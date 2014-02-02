@@ -1,6 +1,6 @@
 {
   "name": "wsse",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "WSSE Username Token generator for Node.js",
   "main": "index.js",
   "scripts": {
