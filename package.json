@@ -1,0 +1,26 @@
+{
+  "name": "wsse",
+  "version": "0.0.1",
+  "description": "WSSE Username Token generator for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bouzuya/node-wsse.git"
+  },
+  "keywords": [
+    "wsse"
+  ],
+  "author": "bouzuya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bouzuya/node-wsse/issues"
+  },
+  "homepage": "https://github.com/bouzuya/node-wsse",
+  "devDependencies": {
+    "chai": "~1.9.0",
+    "mocha": "~1.17.1"
+  }
+}
