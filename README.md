@@ -1,16 +1,14 @@
-WSSE
-==============================================================================
+# WSSE
 
 WSSE Username Token generator for Node.js
 
-[![Build Status](https://travis-ci.org/bouzuya/node-wsse.svg)](https://travis-ci.org/bouzuya/node-wsse)
-
-Usage
-------------------------------------------------------------------------------
-
-### Installation
+## Installation
 
     $ npm install wsse
+
+## Badges
+
+[![Build Status](https://travis-ci.org/bouzuya/node-wsse.svg)](https://travis-ci.org/bouzuya/node-wsse)
 
 ## License
 
