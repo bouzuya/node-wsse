@@ -2,7 +2,11 @@
   "name": "wsse",
   "description": "WSSE Username Token generator for Node.js",
   "version": "1.0.0",
-  "author": "bouzuya",
+  "author": {
+    "name": "bouzuya",
+    "email": "m@bouzuya.net",
+    "url": "http://bouzuya.net"
+  },
   "bugs": {
     "url": "https://github.com/bouzuya/node-wsse/issues"
   },
