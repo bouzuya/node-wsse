@@ -2,6 +2,8 @@
 
 WSSE Username Token generator for Node.js
 
+See: http://www.xml.com/pub/a/2003/12/17/dive.html
+
 ## Installation
 
     $ npm install wsse
