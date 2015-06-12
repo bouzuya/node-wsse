@@ -12,7 +12,13 @@ WSSE Username Token generator for Node.js
 
 ## License
 
+### >=2.0.0
+
 [MIT](LICENSE)
+
+### <1.0.0
+
+ISC
 
 ## Author
 
