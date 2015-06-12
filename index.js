@@ -1,2 +1,1 @@
-module.exports = require('./lib/wsse');
-
+module.exports = require('./lib/username-token');
