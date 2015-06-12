@@ -11,6 +11,7 @@
     "url": "https://github.com/bouzuya/node-wsse/issues"
   },
   "devDependencies": {
+    "coffee-script": "^1.9.3",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1",
