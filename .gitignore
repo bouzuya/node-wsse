@@ -1,1 +1,4 @@
+.envrc
+.tmp/
+*.log
 node_modules/
