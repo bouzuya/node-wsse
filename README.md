@@ -14,8 +14,6 @@ See: http://www.xml.com/pub/a/2003/12/17/dive.html
 
     var options = { username: 'bob', password: 'taadtaadpstcsm' };
 
-    // you can other syntax:
-    // var token = new wsse.UsernameToken(options);
     var token = wsse(options);
 
     // 'bob'
@@ -36,11 +34,23 @@ See: http://www.xml.com/pub/a/2003/12/17/dive.html
     // e.g. 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="d36e316282959a9ed4c89851497a717f", Created="2003-12-15T14:43:07Z"'
     console.log(token.getWSSEHeader());
     console.log(token.toString());
+    console.log(token + '');
 
     // ----- advanced -----
 
+    // you can use `UsernameToken` class.
+    var token2 = new wsse.UsernameToken({
+      username: 'bob',
+      password: 'taadtaadpstcsm',
+      created: '2003-12-15T14:43:07Z',           // you can specify `craeted`.
+      nonce: 'd36e316282959a9ed4c89851497a717f'  // you can specify `nonce`.
+    });
+
+    // you can use `nonceBase64` option. it encodes the nonce to base64 in header.
     // e.g. 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y=", Created="2003-12-15T14:43:07Z"'
-    console.log(token.getWSSEHeader({ nonceBase64: true }));
+    console.log(token2.getWSSEHeader({ nonceBase64: true }));
+    console.log(token2.toString({ nonceBase64: true }));
+
 
 ## Badges
 
