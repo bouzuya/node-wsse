@@ -37,6 +37,9 @@ See: http://www.xml.com/pub/a/2003/12/17/dive.html
     console.log(token.getWSSEHeader());
     console.log(token.toString());
 
+    // ----- advanced -----
+
+    // e.g. 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y=", Created="2003-12-15T14:43:07Z"'
     console.log(token.getWSSEHeader({ nonceBase64: true }));
 
 ## Badges

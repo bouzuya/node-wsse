@@ -7,12 +7,19 @@ describe 'UsernameToken', ->
     @created = '2003-12-15T14:43:07Z'
     @digest = 'quR/EWLAV4xLf9Zqyw4pDmfV9OY='
     @nonce = 'd36e316282959a9ed4c89851497a717f'
+    @nonceBase64 = 'ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y='
     @password = 'taadtaadpstcsm'
     @username = 'bob'
     @header = 'UsernameToken ' + [
       "Username=\"#{@username}\""
       "PasswordDigest=\"#{@digest}\""
       "Nonce=\"#{@nonce}\""
+      "Created=\"#{@created}\""
+    ].join ', '
+    @nonceBase64Header = 'UsernameToken ' + [
+      "Username=\"#{@username}\""
+      "PasswordDigest=\"#{@digest}\""
+      "Nonce=\"#{@nonceBase64}\""
       "Created=\"#{@created}\""
     ].join ', '
 
@@ -42,8 +49,13 @@ describe 'UsernameToken', ->
       assert @token.getUsername() is @username
 
   describe '#getWSSEHeader', ->
-    it 'works', ->
-      assert @token.getWSSEHeader() is @header
+    context 'when no args', ->
+      it 'works', ->
+        assert @token.getWSSEHeader() is @header
+
+    context 'when with { nonceBase64: true }', ->
+      it 'works', ->
+        assert @token.getWSSEHeader(nonceBase64: true) is @nonceBase64Header
 
   describe '#toString', ->
     it 'works', ->
