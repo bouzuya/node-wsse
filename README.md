@@ -33,7 +33,7 @@ See: http://www.xml.com/pub/a/2003/12/17/dive.html
     // e.g. 'quR/EWLAV4xLf9Zqyw4pDmfV9OY='
     console.log(token.getPasswordDigest());
 
-    // e.g. 'Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="d36e316282959a9ed4c89851497a717f", Created="2003-12-15T14:43:07Z"'
+    // e.g. 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="d36e316282959a9ed4c89851497a717f", Created="2003-12-15T14:43:07Z"'
     console.log(token.getWSSEHeader());
     console.log(token.toString());
 
