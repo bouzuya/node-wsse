@@ -63,6 +63,11 @@ describe 'UsernameToken', ->
         assert @token1.getWSSEHeader(nonceBase64: true) is @nonceBase64Header
 
   describe '#toString', ->
-    it 'works', ->
-      assert @token1.toString() is @header
-      assert @token1 + '' is @header
+    context 'with no args', ->
+      it 'works', ->
+        assert @token1.toString() is @header
+        assert @token1 + '' is @header
+
+    context 'with with { nonceBase64: true }', ->
+      it 'works', ->
+        assert @token1.toString(nonceBase64: true) is @nonceBase64Header
