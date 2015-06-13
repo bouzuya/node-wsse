@@ -15,8 +15,7 @@ $ npm install wsse
 ```javascript
 var wsse = require('wsse');
 
-var options = { username: 'bob', password: 'taadtaadpstcsm' };
-var token = wsse(options);
+var token = wsse({ username: 'bob', password: 'taadtaadpstcsm' });
 
 // 'bob'
 console.log(token.getUsername());
@@ -49,7 +48,7 @@ var token2 = new wsse.UsernameToken({
 });
 
 // you can use `nonceBase64` option. it encodes the nonce to base64 in header.
-// e.g. 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y=", Created="2003-12-15T14:43:07Z"'
+// 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y=", Created="2003-12-15T14:43:07Z"'
 console.log(token2.getWSSEHeader({ nonceBase64: true }));
 console.log(token2.toString({ nonceBase64: true }));
 ```
