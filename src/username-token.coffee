@@ -1,11 +1,11 @@
 crypto = require 'crypto'
 
 class UsernameToken
-  constructor: ({ username, password }) ->
+  constructor: ({ username, password, created, nonce } = {}) ->
     @_username = username
     @_password = password
-    @_created = @_newCreated()
-    @_nonce = @_newNonce()
+    @_created = created ? @_newCreated()
+    @_nonce = nonce ? @_newNonce()
 
   getCreated: ->
     @_created
@@ -16,28 +16,24 @@ class UsernameToken
   getPassword: ->
     @_password
 
-  getPasswordDigest: ({ created, nonce } = {}) ->
-    created = created ? @getCreated()
-    nonce = nonce ? @getNonce()
-    @_digest nonce + created + @getPassword()
+  getPasswordDigest: ->
+    @_digest @getNonce() + @getCreated() + @getPassword()
 
   getUsername: ->
     @_username
 
-  getWSSEHeader: ({ created, nonce, nonceBase64 } = {}) ->
-    created = created ? @getCreated()
-    nonce = nonce ? @getNonce()
+  getWSSEHeader: ({ nonceBase64 } = {}) ->
     nonceBase64 = nonceBase64 ? false
     'UsernameToken ' +
     [
       "Username=\"#{@getUsername()}\""
-      "PasswordDigest=\"#{@getPasswordDigest({ created, nonce })}\""
-      "Nonce=\"#{if nonceBase64 then @_base64(nonce) else nonce}\""
+      "PasswordDigest=\"#{@getPasswordDigest()}\""
+      "Nonce=\"#{if nonceBase64 then @_base64(@getNonce()) else @getNonce()}\""
       "Created=\"#{@getCreated()}\""
     ].join ', '
 
-  toString: ({ created, nonce, nonceBase64 } = {}) ->
-    @getWSSEHeader { created, nonce, nonceBase64 }
+  toString: ({ nonceBase64 } = {}) ->
+    @getWSSEHeader { nonceBase64 }
 
   _base64: (s) ->
     new Buffer(s).toString 'base64'
