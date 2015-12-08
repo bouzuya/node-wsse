@@ -29,6 +29,9 @@ console.log(token.getCreated());
 // e.g. 'd36e316282959a9ed4c89851497a717f'
 console.log(token.getNonce());
 
+// e.g. 'ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y='
+console.log(token.getNonceBase64());
+
 // e.g. 'quR/EWLAV4xLf9Zqyw4pDmfV9OY='
 console.log(token.getPasswordDigest());
 
