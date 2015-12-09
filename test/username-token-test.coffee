@@ -41,6 +41,11 @@ describe 'UsernameToken', ->
       assert @token1.getNonce() is @nonce
       assert @token2.getNonce() isnt null
 
+  describe '#getNonceBase64', ->
+    it 'works', ->
+      assert @token1.getNonceBase64() is @nonceBase64
+      assert @token2.getNonceBase64() isnt null
+
   describe '#getPassword', ->
     it 'works', ->
       assert @token1.getPassword() is @password

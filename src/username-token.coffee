@@ -13,6 +13,9 @@ class UsernameToken
   getNonce: ->
     @_nonce
 
+  getNonceBase64: ->
+    @_base64 @_nonce
+
   getPassword: ->
     @_password
 
@@ -28,7 +31,7 @@ class UsernameToken
     [
       "Username=\"#{@getUsername()}\""
       "PasswordDigest=\"#{@getPasswordDigest()}\""
-      "Nonce=\"#{if nonceBase64 then @_base64(@getNonce()) else @getNonce()}\""
+      "Nonce=\"#{if nonceBase64 then @getNonceBase64() else @getNonce()}\""
       "Created=\"#{@getCreated()}\""
     ].join ', '
 
