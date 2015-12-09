@@ -44,10 +44,11 @@ console.log(token + '');
 
 // you can use `UsernameToken` class.
 var token2 = new wsse.UsernameToken({
-  username: 'bob',
-  password: 'taadtaadpstcsm',
-  created: '2003-12-15T14:43:07Z',           // you can specify `craeted`.
-  nonce: 'd36e316282959a9ed4c89851497a717f'  // you can specify `nonce`.
+  username: 'bob',                           // (required)
+  password: 'taadtaadpstcsm',                // (required)
+  created: '2003-12-15T14:43:07Z',           // (optional) you can specify `craeted`.
+  nonce: 'd36e316282959a9ed4c89851497a717f', // (optional) you can specify `nonce`.
+  sha1encoding: 'hex'                        // (optional) you can specify `sha1encoding` for wrong WSSE Username Token implementation.
 });
 
 // you can use `nonceBase64` option. it encodes the nonce to base64 in header.

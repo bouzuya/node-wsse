@@ -76,3 +76,66 @@ describe 'UsernameToken', ->
     context 'with with { nonceBase64: true }', ->
       it 'works', ->
         assert @token1.toString(nonceBase64: true) is @nonceBase64Header
+
+  context 'Emarsys bad implementation', ->
+    # http://documentation.emarsys.com/resource/developers/api/getting-started/authentication/
+    # http://documentation.emarsys.com/resource/developers/api/getting-started/authentication/ruby-sample/
+
+    beforeEach ->
+      { UsernameToken } = wsse
+
+      @created = '2014-03-20T12:51:45Z'
+      @digest = 'YWQyNWE5Y2JkOTY2ZTU1ODg2M2QzNzVhNDZlZGQwZjg5YjZlZTk4Yw=='
+      @nonce = 'd36e316282959a9ed4c89851497a717f'
+      @password = 'customersecret'
+      @username = 'customer001'
+      @sha1encoding = 'hex'
+
+      @header = 'UsernameToken ' + [
+        "Username=\"#{@username}\""
+        "PasswordDigest=\"#{@digest}\""
+        "Nonce=\"#{@nonce}\""
+        "Created=\"#{@created}\""
+      ].join ', '
+
+      # specify sha1encoding
+      @token = new UsernameToken {
+        @created, @nonce, @username, @password, @sha1encoding
+      }
+
+    describe '#getCreated', ->
+      it 'works', ->
+        assert @token.getCreated() is @created
+
+    describe '#getNonce', ->
+      it 'works', ->
+        assert @token.getNonce() is @nonce
+
+    describe '#getNonceBase64', ->
+
+    describe '#getPassword', ->
+      it 'works', ->
+        assert @token.getPassword() is @password
+
+    describe '#getPasswordDigest', ->
+      it 'works', ->
+        assert @token.getPasswordDigest() is @digest
+
+    describe '#getUsername', ->
+      it 'works', ->
+        assert @token.getUsername() is @username
+
+    describe '#getWSSEHeader', ->
+      context 'with no args', ->
+        it 'works', ->
+          assert @token.getWSSEHeader() is @header
+
+      context 'with with { nonceBase64: true }', ->
+
+    describe '#toString', ->
+      context 'with no args', ->
+        it 'works', ->
+          assert @token.toString() is @header
+          assert @token + '' is @header
+
+      context 'with with { nonceBase64: true }', ->

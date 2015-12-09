@@ -1,11 +1,12 @@
 crypto = require 'crypto'
 
 class UsernameToken
-  constructor: ({ username, password, created, nonce } = {}) ->
-    @_username = username
-    @_password = password
+  constructor: ({ username, password, created, nonce, sha1encoding } = {}) ->
+    @_username = username # required
+    @_password = password # required
     @_created = created ? @_newCreated()
     @_nonce = nonce ? @_newNonce()
+    @_sha1encoding = sha1encoding ? undefined
 
   getCreated: ->
     @_created
@@ -20,7 +21,8 @@ class UsernameToken
     @_password
 
   getPasswordDigest: ->
-    @_digest @getNonce() + @getCreated() + @getPassword()
+    text = @getNonce() + @getCreated() + @getPassword()
+    @_base64 @_sha1(text, @_sha1encoding)
 
   getUsername: ->
     @_username
@@ -41,10 +43,10 @@ class UsernameToken
   _base64: (s) ->
     new Buffer(s).toString 'base64'
 
-  _digest: (s) ->
+  _sha1: (s, encoding) ->
     sha1 = crypto.createHash 'sha1'
     sha1.update s, 'utf-8'
-    sha1.digest 'base64'
+    sha1.digest encoding # return Buffer if encoding is undefined
 
   _newCreated: ->
     new Date().toISOString()
