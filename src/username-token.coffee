@@ -37,6 +37,14 @@ class UsernameToken
       "Created=\"#{@getCreated()}\""
     ].join ', '
 
+  newToken: ->
+    # new nonce & new created
+    new UsernameToken({
+      username: @_username,
+      password: @_password,
+      sha1encoding: @_sha1encoding
+    })
+
   toString: ({ nonceBase64 } = {}) ->
     @getWSSEHeader { nonceBase64 }
 

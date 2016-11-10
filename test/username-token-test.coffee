@@ -131,6 +131,18 @@ describe 'UsernameToken', ->
           assert @token.getWSSEHeader() is @header
 
       context 'with with { nonceBase64: true }', ->
+        # TODO
+
+    describe '#newToken', ->
+      context 'with no args', ->
+        it 'works', ->
+          newToken = @token.newToken()
+          assert newToken.getUsername() is @token.getUsername()
+          assert newToken.getPassword() is @token.getPassword()
+          assert newToken.getCreated() isnt @token.getCreated()
+          assert newToken.getNonce() isnt @token.getNonce()
+          # private method
+          assert newToken._sha1encoding is @token._sha1encoding
 
     describe '#toString', ->
       context 'with no args', ->
