@@ -73,8 +73,6 @@ const tests: Test[] = [
     assert(newToken.getPassword() === token1.getPassword());
     assert(newToken.getCreated() !== token1.getCreated());
     assert(newToken.getNonce() !== token1.getNonce());
-    // private member
-    assert((newToken as any)._sha1encoding === (token1 as any)._sha1encoding);
   })),
   test(category + '#toString', fixture(setUp, tearDown, ({ header, token1 }) => {
     assert(token1.toString() === header);

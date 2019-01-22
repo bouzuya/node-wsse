@@ -10,7 +10,7 @@ class UsernameToken {
   private _created: string;
   private _nonce: string;
   private _password: string;
-  private _sha1encoding: SHA1Encoding;
+  private _sha1encoding: SHA1Encoding | undefined;
   private _username: string;
 
   constructor({ username, password, created, nonce, sha1encoding }: {
@@ -18,13 +18,15 @@ class UsernameToken {
     password: string;
     created?: string;
     nonce?: string;
+    // YOU SHOULD NOT USE THIS OPTION.
+    // See: https://github.com/bouzuya/node-wsse/issues/1
     sha1encoding?: SHA1Encoding;
   }) {
     this._username = username; // required
     this._password = password; // required
     this._created = ensure(created, this._newCreated());
     this._nonce = ensure(nonce, this._newNonce());
-    this._sha1encoding = ensure<SHA1Encoding>(sha1encoding, 'base64');
+    this._sha1encoding = sha1encoding;
   }
 
   public getCreated(): string {
@@ -36,7 +38,7 @@ class UsernameToken {
   }
 
   public getNonceBase64(): string {
-    return this._base64(this._nonce);
+    return this._base64(Buffer.from(this._nonce, 'utf8')); // NOTE: 'hex' ?
   }
 
   public getPassword(): string {
@@ -45,7 +47,12 @@ class UsernameToken {
 
   public getPasswordDigest(): string {
     const text = this.getNonce() + this.getCreated() + this.getPassword();
-    return this._base64(this._sha1(text, this._sha1encoding));
+    return this._base64(
+      typeof this._sha1encoding === 'undefined'
+        ? this._sha1(text)
+        // workaround for emarsys bad implementation
+        : Buffer.from(this._sha1(text).toString(this._sha1encoding), 'utf8') // 'utf8' ?
+    );
   }
 
   public getUsername(): string {
@@ -54,6 +61,7 @@ class UsernameToken {
 
   public getWSSEHeader(options?: { nonceBase64?: boolean; }): string {
     const opts = ensure<{ nonceBase64?: boolean; }>(options, {});
+    // workaround for hatena api
     const nonceBase64 = ensure<boolean>(opts.nonceBase64, false);
     return 'UsernameToken ' +
       [
@@ -74,19 +82,17 @@ class UsernameToken {
   }
 
   public toString(options?: { nonceBase64?: boolean; }): string {
-    const opts = ensure<{ nonceBase64?: boolean; }>(options, {});
-    const nonceBase64 = ensure<boolean>(opts.nonceBase64, false);
-    return this.getWSSEHeader({ nonceBase64 });
+    return this.getWSSEHeader(options);
   }
 
-  private _base64(s: string): string {
-    return new Buffer(s).toString('base64');
+  private _base64(b: Buffer): string {
+    return b.toString('base64');
   }
 
-  private _sha1(s: string, encoding: SHA1Encoding): string {
+  private _sha1(s: string): Buffer {
     const sha1 = crypto.createHash('sha1');
     sha1.update(s, 'utf8');
-    return sha1.digest(encoding);
+    return sha1.digest();
   }
 
   private _newCreated(): string {
