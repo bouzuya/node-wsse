@@ -29,7 +29,7 @@
     "wsse"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/bouzuya/node-wsse.git"
