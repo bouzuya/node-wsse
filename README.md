@@ -29,9 +29,6 @@ console.log(token.getCreated());
 // e.g. 'd36e316282959a9ed4c89851497a717f'
 console.log(token.getNonce());
 
-// e.g. 'ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y='
-console.log(token.getNonceBase64());
-
 // e.g. 'quR/EWLAV4xLf9Zqyw4pDmfV9OY='
 console.log(token.getPasswordDigest());
 
@@ -53,6 +50,7 @@ const token2 = new wsse.UsernameToken({
 
 // you can use `nonceBase64` option. it encodes the nonce to base64 in header.
 // 'UsernameToken Username="bob", PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=", Nonce="ZDM2ZTMxNjI4Mjk1OWE5ZWQ0Yzg5ODUxNDk3YTcxN2Y=", Created="2003-12-15T14:43:07Z"'
+// e.g. Hatena API http://developer.hatena.ne.jp/ja/documents/auth/apis/wsse
 console.log(token2.getWSSEHeader({ nonceBase64: true }));
 console.log(token2.toString({ nonceBase64: true }));
 ```
