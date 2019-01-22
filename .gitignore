@@ -1,4 +1,6 @@
-.envrc
-.tmp/
-*.log
-node_modules/
+/.env*
+/.tmp/
+/*.log
+/*.tgz
+/lib/
+/node_modules/
