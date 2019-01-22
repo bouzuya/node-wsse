@@ -14,8 +14,10 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.0",
+    "@types/node": "^10.12.18",
     "@types/power-assert": "^1.5.0",
     "beater": "^5.0.1",
+    "beater-helpers": "^0.2.0",
     "npm-run-all": "^4.1.5",
     "power-assert": "^1.6.1",
     "tslint": "^5.12.1",
@@ -33,9 +35,18 @@
     "url": "git://github.com/bouzuya/node-wsse.git"
   },
   "scripts": {
-    "build": "gulp build",
-    "clean": "gulp clean",
-    "test": "gulp test",
-    "watch": "gulp watch"
+    "build": "npm-run-all -s build:lint build:es2015 build:es5 build:lib",
+    "build:es2015": "tsc",
+    "build:es5": "babel --out-dir .tmp/es5/ --source-maps inline .tmp/es2015/",
+    "build:lib": "babel --copy-files --no-comments --out-dir ./lib/ .tmp/es2015/src/",
+    "build:lint": "tslint --project tsconfig.json",
+    "clean": "rimraf .nyc_output .tmp coverage lib",
+    "coveralls": "nyc report --reporter text-lcov | coveralls",
+    "prepare": "npm-run-all -s 'clean' 'build'",
+    "test": "nyc --reporter lcov node .tmp/es5/test/index.js | tap-dot-b && nyc report",
+    "watch": "npm-run-all -p 'watch:*'",
+    "watch:es2015": "npm run build:es2015 -- --watch",
+    "watch:es5": "npm run build:es5 -- --watch",
+    "watch:test": "watch 'npm run test' .tmp/es5/ --wait 2"
   }
 }
