@@ -7,6 +7,19 @@
     "email": "m@bouzuya.net",
     "url": "http://bouzuya.net"
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "6"
+          }
+        }
+      ],
+      "power-assert"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/bouzuya/node-wsse/issues"
   },
