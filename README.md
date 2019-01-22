@@ -6,16 +6,16 @@ See: http://www.xml.com/pub/a/2003/12/17/dive.html
 
 ## Installation
 
-```
-$ npm install wsse
+```bash
+npm install wsse
 ```
 
 ## Usage
 
 ```javascript
-var wsse = require('wsse');
+import wsse from 'wsse';
 
-var token = wsse({ username: 'bob', password: 'taadtaadpstcsm' });
+const token = wsse({ username: 'bob', password: 'taadtaadpstcsm' });
 
 // 'bob'
 console.log(token.getUsername());
@@ -43,7 +43,7 @@ console.log(token + '');
 // ----- advanced -----
 
 // you can use `UsernameToken` class.
-var token2 = new wsse.UsernameToken({
+const token2 = new wsse.UsernameToken({
   username: 'bob',                           // (required)
   password: 'taadtaadpstcsm',                // (required)
   created: '2003-12-15T14:43:07Z',           // (optional) you can specify `craeted`.
