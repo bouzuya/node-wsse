@@ -1,7 +1,7 @@
 import { Test, test } from 'beater';
 import { fixture } from 'beater-helpers/fixture';
 import assert from 'power-assert';
-import { UsernameToken } from '../src';
+import usernameToken, { UsernameToken } from '../src';
 
 const category = 'standard ';
 const setUp = () => {
@@ -33,36 +33,52 @@ const setUp = () => {
     token1: new UsernameToken({ created, nonce, username, password }),
     // auto generate created & nonce
     token2: new UsernameToken({ username, password }),
+    // auto generate created & nonce (use smart constructor)
+    token3: usernameToken({ username, password }),
     username
   };
 };
 const tearDown = () => void 0;
 
 const tests: Test[] = [
-  test(category + '#getCreated', fixture(setUp, tearDown, ({ created, token1, token2 }) => {
-    assert(token1.getCreated() === created);
-    assert(token2.getCreated() !== null);
-  })),
-  test(category + '#getNonce', fixture(setUp, tearDown, ({ nonce, token1, token2 }) => {
-    assert(token1.getNonce() === nonce);
-    assert(token2.getNonce() !== null);
-  })),
-  test(category + '#getNonceBase64', fixture(setUp, tearDown, ({ nonceBase64, token1, token2 }) => {
-    assert(token1.getNonceBase64() === nonceBase64);
-    assert(token2.getNonceBase64() !== null);
-  })),
-  test(category + '#getPassword', fixture(setUp, tearDown, ({ password, token1 }) => {
-    assert(token1.getPassword() === password);
-  })),
-  test(category + '#getPasswordDigest', fixture(setUp, tearDown, ({ digest, token1 }) => {
-    assert(token1.getPasswordDigest() === digest);
-  })),
-  test(category + '#getUsername', fixture(setUp, tearDown, ({ token1, username }) => {
-    assert(token1.getUsername() === username);
-  })),
-  test(category + '#getWSSEHeader with no args', fixture(setUp, tearDown, ({ header, token1 }) => {
-    assert(token1.getWSSEHeader() === header);
-  })),
+  test(category + '#getCreated', fixture(setUp, tearDown,
+    ({ created, token1, token2, token3 }) => {
+      assert(token1.getCreated() === created);
+      assert(token2.getCreated() !== null);
+      assert(token3.getCreated() !== null);
+    })),
+  test(category + '#getNonce', fixture(setUp, tearDown,
+    ({ nonce, token1, token2, token3 }) => {
+      assert(token1.getNonce() === nonce);
+      assert(token2.getNonce() !== null);
+      assert(token3.getNonce() !== null);
+    })),
+  test(category + '#getNonceBase64', fixture(setUp, tearDown,
+    ({ nonceBase64, token1, token2, token3 }) => {
+      assert(token1.getNonceBase64() === nonceBase64);
+      assert(token2.getNonceBase64() !== null);
+      assert(token3.getNonceBase64() !== null);
+    })),
+  test(category + '#getPassword', fixture(setUp, tearDown,
+    ({ password, token1, token2, token3 }) => {
+      assert(token1.getPassword() === password);
+      assert(token2.getPassword() === password);
+      assert(token3.getPassword() === password);
+    })),
+  test(category + '#getPasswordDigest', fixture(setUp, tearDown,
+    ({ digest, token1 }) => {
+      assert(token1.getPasswordDigest() === digest);
+    })),
+  test(category + '#getUsername', fixture(setUp, tearDown,
+    ({ token1, token2, token3, username }) => {
+      assert(token1.getUsername() === username);
+      assert(token2.getUsername() === username);
+      assert(token3.getUsername() === username);
+    })),
+  test(category + '#getWSSEHeader with no args', fixture(setUp, tearDown,
+    ({ header, token1 }) => {
+      assert(token1.getWSSEHeader() === header);
+    })),
   test(category + '#getWSSEHeader with { nonceBase64: true }',
     fixture(setUp, tearDown, ({ nonceBase64Header, token1 }) => {
       assert(token1.getWSSEHeader({ nonceBase64: true }) === nonceBase64Header);
