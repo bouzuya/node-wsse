@@ -100,10 +100,9 @@ class UsernameToken {
   }
 
   private _newNonce(): string {
-    return new Array(10)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 256).toString(16))
-      .join('');
+    const buf = Buffer.alloc(10);
+    crypto.randomFillSync(buf);
+    return buf.toString("hex");
   }
 }
 
