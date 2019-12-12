@@ -38,7 +38,7 @@
     "nyc": "^14.1.1",
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.0",
-    "tap-dot-b": "^0.1.0",
+    "tap-dot-b": "^1.0.1",
     "tslint": "^5.20.1",
     "typescript": "^3.7.3",
     "watch": "^1.0.2"
