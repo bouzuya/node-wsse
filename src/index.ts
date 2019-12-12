@@ -102,7 +102,7 @@ class UsernameToken {
   private _newNonce(): string {
     const buf = Buffer.alloc(10);
     crypto.randomFillSync(buf);
-    return buf.toString("hex");
+    return buf.toString('hex');
   }
 }
 
