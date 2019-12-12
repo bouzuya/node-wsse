@@ -65,7 +65,7 @@
     "clean": "rimraf .nyc_output .tmp coverage lib",
     "coveralls": "nyc report --reporter text-lcov | coveralls",
     "prepare": "npm-run-all -s 'clean' 'build'",
-    "test": "nyc --reporter lcov node .tmp/es5/test/index.js | tap-dot-b && nyc report",
+    "test": "nyc --reporter lcov --source-map false node .tmp/es5/test/index.js | tap-dot-b && nyc report",
     "watch": "npm-run-all -p 'watch:*'",
     "watch:es2015": "npm run build:es2015 -- --watch",
     "watch:es5": "npm run build:es5 -- --watch",
