@@ -1,5 +1,5 @@
-import { Test, run } from 'beater';
 import { tests as emarsysTests } from './emarsys';
+import { Test, run } from './helper';
 import { tests as standardTests } from './standard';
 
 const tests = ([] as Test[])

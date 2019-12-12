@@ -1,7 +1,6 @@
-import { Test, test } from 'beater';
-import { fixture } from 'beater-helpers/fixture';
 import assert from 'power-assert';
 import { UsernameToken } from '../src';
+import { Test, fixture, test } from './helper';
 
 const category = 'Emarsys bad implementation';
 const setUp = () => {
