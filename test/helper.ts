@@ -1,8 +1,8 @@
-import { Test, run } from 'beater';
-import { fixture } from 'beater-helpers/fixture';
+import { Test, run } from "beater";
+import { fixture } from "beater-helpers/fixture";
 
 const test = (name: string, fn: Test): Test => {
-  Object.defineProperty(fn, 'name', { value: name });
+  Object.defineProperty(fn, "name", { value: name });
   return fn;
 };
 
