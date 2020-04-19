@@ -3,7 +3,19 @@ import usernameToken, { UsernameToken } from "../src";
 import { Test, fixture, test } from "./helper";
 
 const category = "standard ";
-const setUp = () => {
+const setUp = (): {
+  created: string;
+  digest: string;
+  nonce: string;
+  nonceBase64: string;
+  nonceBase64Header: string;
+  header: string;
+  password: string;
+  token1: UsernameToken;
+  token2: UsernameToken;
+  token3: UsernameToken;
+  username: string;
+} => {
   const created = "2003-12-15T14:43:07Z";
   const digest = "quR/EWLAV4xLf9Zqyw4pDmfV9OY=";
   const nonce = "d36e316282959a9ed4c89851497a717f";
@@ -41,7 +53,7 @@ const setUp = () => {
     username,
   };
 };
-const tearDown = () => void 0;
+const tearDown = (): void => void 0;
 
 const tests: Test[] = [
   test(

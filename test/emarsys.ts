@@ -3,7 +3,16 @@ import { UsernameToken } from "../src";
 import { Test, fixture, test } from "./helper";
 
 const category = "Emarsys bad implementation";
-const setUp = () => {
+const setUp = (): {
+  created: string;
+  digest: string;
+  nonce: string;
+  header: string;
+  password: string;
+  sha1encoding: string;
+  token: UsernameToken;
+  username: string;
+} => {
   // http://documentation.emarsys.com/resource/developers/api/getting-started/authentication/
   // http://documentation.emarsys.com/resource/developers/api/getting-started/authentication/ruby-sample/
   const created = "2014-03-20T12:51:45Z";
@@ -18,10 +27,10 @@ const setUp = () => {
     header:
       "UsernameToken " +
       [
-        `Username=\"${username}\"`,
-        `PasswordDigest=\"${digest}\"`,
-        `Nonce=\"${nonce}\"`,
-        `Created=\"${created}\"`,
+        `Username="${username}"`,
+        `PasswordDigest="${digest}"`,
+        `Nonce="${nonce}"`,
+        `Created="${created}"`,
       ].join(", "),
     nonce,
     password,
@@ -37,7 +46,7 @@ const setUp = () => {
     username,
   };
 };
-const tearDown = () => void 0;
+const tearDown = (): void => void 0;
 
 const tests: Test[] = [
   test(
@@ -97,6 +106,7 @@ const tests: Test[] = [
       assert(newToken.getCreated() !== token.getCreated());
       assert(newToken.getNonce() !== token.getNonce());
       // private method
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       assert((newToken as any)._sha1encoding === (token as any)._sha1encoding);
     })
   ),
