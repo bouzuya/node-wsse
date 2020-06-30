@@ -28,6 +28,9 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "@rollup/plugin-typescript": "^5.0.1",
     "@types/node": "^12.12.36",
     "@types/power-assert": "^1.5.3",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
@@ -43,7 +46,9 @@
     "power-assert": "^1.6.1",
     "prettier": "^2.0.4",
     "rimraf": "^3.0.2",
+    "rollup": "^2.18.1",
     "tap-dot-b": "^1.0.1",
+    "tslib": "^2.0.0",
     "typescript": "^3.8.3",
     "watch": "^1.0.2"
   },
@@ -55,7 +60,8 @@
     "wsse"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/bouzuya/node-wsse.git"
@@ -65,7 +71,7 @@
     "build:es2015": "tsc",
     "build:es5": "babel --out-dir .tmp/es5/ --source-maps inline .tmp/es2015/",
     "build:format": "prettier --check \"{src,test}/**/*.ts\"",
-    "build:lib": "babel --copy-files --no-comments --out-dir ./lib/ .tmp/es2015/src/",
+    "build:lib": "rollup --config rollup.config.js",
     "build:lint": "eslint \"{src,test}/**/*.ts\"",
     "clean": "rimraf .nyc_output .tmp coverage lib",
     "coveralls": "nyc report --reporter text-lcov | coveralls",
@@ -75,6 +81,8 @@
     "watch": "npm-run-all -p 'watch:*'",
     "watch:es2015": "npm run build:es2015 -- --watch",
     "watch:es5": "npm run build:es5 -- --watch",
+    "watch:lib": "npm run build:lib -- --watch",
     "watch:test": "watch 'npm run test' .tmp/es5/ --wait 2"
-  }
+  },
+  "types": "./lib/cjs/types/src/index.d.ts"
 }
