@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { Buffer } from "buffer";
 
 const ensure = <T>(v: T | null | undefined, d: T): T => {
   return typeof v !== "undefined" && v !== null ? v : d;
