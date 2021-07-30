@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.9.5",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
-    "@rollup/plugin-typescript": "^5.0.1",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@types/node": "^12.12.36",
     "@types/power-assert": "^1.5.3",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
