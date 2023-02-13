@@ -58,15 +58,12 @@ console.log(token2.toString({ nonceBase64: true }));
 ## Badges
 
 [![npm version][npm-badge-url]][npm-url]
-[![Travis CI][travisci-badge-url]][travisci-url]
 [![Coveralls][coveralls-badge-url]][coveralls-url]
 
 [coveralls-badge-url]: https://img.shields.io/coveralls/github/bouzuya/node-wsse.svg
 [coveralls-url]: https://coveralls.io/github/bouzuya/node-wsse
 [npm-badge-url]: https://img.shields.io/npm/v/wsse.svg
 [npm-url]: https://www.npmjs.com/package/wsse
-[travisci-badge-url]: https://img.shields.io/travis/bouzuya/node-wsse.svg
-[travisci-url]: https://travis-ci.org/bouzuya/node-wsse
 
 ## License
 
