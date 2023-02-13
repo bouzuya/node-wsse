@@ -23,7 +23,6 @@
   "bugs": {
     "url": "https://github.com/bouzuya/node-wsse/issues"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
@@ -38,6 +37,7 @@
     "babel-preset-power-assert": "^3.0.0",
     "beater": "^9.0.1",
     "beater-helpers": "^2.0.0",
+    "chokidar-cli": "^3.0.0",
     "coveralls": "^3.0.11",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -49,8 +49,7 @@
     "rollup": "^2.18.1",
     "tap-dot-b": "^1.0.1",
     "tslib": "^2.0.0",
-    "typescript": "^3.8.3",
-    "watch": "^1.0.2"
+    "typescript": "^3.8.3"
   },
   "files": [
     "lib"
@@ -82,7 +81,7 @@
     "watch:es2015": "npm run build:es2015 -- --watch",
     "watch:es5": "npm run build:es5 -- --watch",
     "watch:lib": "npm run build:lib -- --watch",
-    "watch:test": "watch 'npm run test' .tmp/es5/ --wait 2"
+    "watch:test": "chokidar --command 'npm run test' '.tmp/es5/**/*.js'"
   },
   "types": "./lib/cjs/types/src/index.d.ts"
 }
