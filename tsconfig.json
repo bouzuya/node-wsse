@@ -2,9 +2,10 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "lib": ["es2022"],
     "esModuleInterop": true,
     "inlineSourceMap": false,
-    "module": "es2015",
+    "module": "es2022",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -12,7 +13,7 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./.tmp/es2015/",
+    "outDir": "./lib/",
     "removeComments": true,
     "rootDir": "./",
     "sourceMap": false,
@@ -20,7 +21,7 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2015"
+    "target": "es2022"
   },
   "files": ["./src/index.ts", "./test/index.ts"]
 }

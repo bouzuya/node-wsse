@@ -1,6 +1,6 @@
-import assert from "power-assert";
-import { UsernameToken } from "../src";
-import { Test, fixture, test } from "./helper";
+import assert from "node:assert";
+import { UsernameToken } from "../src/index.js";
+import { Test, fixture, test } from "./helper.js";
 
 const category = "Emarsys bad implementation";
 const setUp = (): {

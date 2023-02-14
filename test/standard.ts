@@ -1,6 +1,6 @@
-import assert from "power-assert";
-import usernameToken, { UsernameToken } from "../src";
-import { Test, fixture, test } from "./helper";
+import assert from "node:assert";
+import usernameToken, { UsernameToken } from "../src/index.js";
+import { Test, fixture, test } from "./helper.js";
 
 const category = "standard ";
 const setUp = (): {

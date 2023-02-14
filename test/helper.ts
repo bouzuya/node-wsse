@@ -1,5 +1,5 @@
 import { Test, run } from "beater";
-import { fixture } from "beater-helpers/fixture";
+import { fixture } from "beater-helpers/fixture.js";
 
 const test = (name: string, fn: Test): Test => {
   Object.defineProperty(fn, "name", { value: name });
