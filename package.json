@@ -46,7 +46,7 @@
     "power-assert": "^1.6.1",
     "prettier": "^2.0.4",
     "rimraf": "^3.0.2",
-    "rollup": "^2.18.1",
+    "rollup": "^3.0.0",
     "tap-dot-b": "^1.0.1",
     "tslib": "^2.0.0",
     "typescript": "^3.8.3"
