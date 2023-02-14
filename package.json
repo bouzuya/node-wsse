@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
-    "@typescript-eslint/eslint-plugin": "^2.28.0",
-    "@typescript-eslint/parser": "^2.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "beater": "^9.0.1",
     "beater-helpers": "^2.0.0",
     "chokidar-cli": "^3.0.0",
