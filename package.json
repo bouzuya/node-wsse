@@ -30,7 +30,7 @@
   },
   "exports": "./lib/src/index.js",
   "files": [
-    "lib"
+    "lib/src"
   ],
   "homepage": "https://github.com/bouzuya/node-wsse",
   "keywords": [
