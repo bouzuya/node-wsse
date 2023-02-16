@@ -11,6 +11,7 @@
     "url": "https://github.com/bouzuya/node-wsse/issues"
   },
   "devDependencies": {
+    "@istanbuljs/esm-loader-hook": "^0.2.0",
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
@@ -21,7 +22,7 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "npm-run-all": "^4.1.5",
-    "nyc": "^15.0.1",
+    "nyc": "^15.1.0",
     "prettier": "^2.0.4",
     "rimraf": "^4.1.2",
     "tap-dot-b": "^1.0.1",
@@ -36,6 +37,17 @@
     "wsse"
   ],
   "license": "MIT",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "html",
+      "text",
+      "text-summary"
+    ],
+    "exclude": [
+      "**/test/**"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/bouzuya/node-wsse.git"
@@ -49,7 +61,7 @@
     "coveralls": "nyc report --reporter text-lcov | coveralls",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
     "prepare": "npm-run-all -s 'clean' 'build'",
-    "test": "nyc --reporter lcov --source-map false node lib/test/index.js | tap-dot-b && nyc report",
+    "test": "nyc node --loader @istanbuljs/esm-loader-hook lib/test/index.js | tap-dot-b && nyc report",
     "watch": "npm-run-all -p 'watch:*'",
     "watch:es2015": "npm run build:es2015 -- --watch",
     "watch:test": "chokidar --command 'npm run test' 'lib/**/*.js'"
