@@ -1,3 +1,7 @@
+# [6.0.0](https://github.com/bouzuya/node-wsse/compare/v5.1.0...v6.0.0) (2023-02-18)
+
+- Remove support CommonJS
+
 ## [5.1.0](https://github.com/bouzuya/node-wsse/compare/v5.0.0...v5.1.0) (2020-06-30)
 
 - fix: add `import { Buffer } from "buffer";` ([2a978f5](https://github.com/bouzuya/node-wsse/commit/2a978f5))
