@@ -1,5 +1,5 @@
-import crypto from "crypto";
-import { Buffer } from "buffer";
+import { createHash, randomFillSync } from "node:crypto";
+import { Buffer } from "node:buffer";
 
 const ensure = <T>(v: T | null | undefined, d: T): T => {
   return typeof v !== "undefined" && v !== null ? v : d;
@@ -45,7 +45,7 @@ class UsernameToken {
   }
 
   public getNonceBase64(): string {
-    return this._base64(Buffer.from(this._nonce, "utf8")); // NOTE: 'hex' ?
+    return this._base64ForString(this._nonce);
   }
 
   public getPassword(): string {
@@ -54,12 +54,11 @@ class UsernameToken {
 
   public getPasswordDigest(): string {
     const text = this.getNonce() + this.getCreated() + this.getPassword();
-    return this._base64(
-      typeof this._sha1encoding === "undefined"
-        ? this._sha1(text)
-        : // workaround for emarsys bad implementation
-          Buffer.from(this._sha1(text).toString(this._sha1encoding), "utf8") // 'utf8' ?
-    );
+    const buf = this._sha1(text);
+    return typeof this._sha1encoding === "undefined"
+      ? this._base64(buf)
+      : // workaround for emarsys bad implementation
+      this._base64ForString(buf.toString(this._sha1encoding));
   }
 
   public getUsername(): string {
@@ -98,10 +97,8 @@ class UsernameToken {
     return b.toString("base64");
   }
 
-  private _sha1(s: string): Buffer {
-    const sha1 = crypto.createHash("sha1");
-    sha1.update(s, "utf8");
-    return sha1.digest();
+  private _base64ForString(s: string): string {
+    return this._base64(Buffer.from(s, 'utf-8'));
   }
 
   private _newCreated(): string {
@@ -110,8 +107,14 @@ class UsernameToken {
 
   private _newNonce(): string {
     const buf = Buffer.alloc(10);
-    crypto.randomFillSync(buf);
+    randomFillSync(buf);
     return buf.toString("hex");
+  }
+
+  private _sha1(s: string): Buffer {
+    const sha1 = createHash("sha1");
+    sha1.update(s, "utf-8");
+    return sha1.digest();
   }
 }
 

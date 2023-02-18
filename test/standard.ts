@@ -132,6 +132,12 @@ const tests: Test[] = [
     })
   ),
   test(
+    category + "#toString with { nonceBase64: false }",
+    fixture(setUp, tearDown, ({ header, token1 }) => {
+      assert(token1.toString({ nonceBase64: false }) === header);
+    })
+  ),
+  test(
     category + "#toString with { nonceBase64: true }",
     fixture(setUp, tearDown, ({ nonceBase64Header, token1 }) => {
       assert(token1.toString({ nonceBase64: true }) === nonceBase64Header);
