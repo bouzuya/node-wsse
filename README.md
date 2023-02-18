@@ -13,7 +13,7 @@ npm install wsse
 ## Usage
 
 ```javascript
-import wsse from 'wsse';
+import wsse, { UsernameToken } from 'wsse';
 
 const token = wsse({ username: 'bob', password: 'taadtaadpstcsm' });
 
@@ -40,7 +40,7 @@ console.log(token + '');
 // ----- advanced -----
 
 // you can use `UsernameToken` class.
-const token2 = new wsse.UsernameToken({
+const token2 = new UsernameToken({
   username: 'bob',                           // (required)
   password: 'taadtaadpstcsm',                // (required)
   created: '2003-12-15T14:43:07Z',           // (optional) you can specify `craeted`.
