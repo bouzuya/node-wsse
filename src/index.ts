@@ -58,7 +58,7 @@ class UsernameToken {
     return typeof this._sha1encoding === "undefined"
       ? this._base64(buf)
       : // workaround for emarsys bad implementation
-      this._base64ForString(buf.toString(this._sha1encoding));
+        this._base64ForString(buf.toString(this._sha1encoding));
   }
 
   public getUsername(): string {
@@ -98,7 +98,7 @@ class UsernameToken {
   }
 
   private _base64ForString(s: string): string {
-    return this._base64(Buffer.from(s, 'utf-8'));
+    return this._base64(Buffer.from(s, "utf-8"));
   }
 
   private _newCreated(): string {
